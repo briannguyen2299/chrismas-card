@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christmas present</title>
+    <link
+      rel="stylesheet"
+      href="https://meyerweb.com/eric/tools/css/reset/reset.css"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="scripts.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/7d6a730315.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="area-1">
+      <div class="present box-1" onclick="checkDisplay('box-1')">
+        <a href="#"></a>
+      </div>
+
+      <div class="present box-2" onclick="checkDisplay('box-2')"></div>
+
+      <div class="present box-3" onclick="checkDisplay('box-3')"></div>
+
+      <div class="overlay item" id="item-1">
+        <i
+          class="fa-solid fa-xmark icon"
+          onclick="removeAndDisplay('item-1')"
+        ></i>
+
+        <img src="assets/images/candy.png" alt="" srcset="" />
+      </div>
+
+      <div class="overlay item" id="item-2">
+        <i
+          class="fa-solid fa-xmark icon"
+          onclick="removeAndDisplay('item-2')"
+        ></i>
+
+        <img src="assets/images/reindeer.png" alt="" srcset="" />
+      </div>
+      <div class="overlay item" id="item-3">
+        <i
+          class="fa-solid fa-xmark icon"
+          onclick="removeAndDisplay('item-3')"
+        ></i>
+
+        <img src="assets/images/coin.png" alt="" srcset="" />
+      </div>
+    </div>
+
+    <div class="area-2">
+      <div class="santa"></div>
+      <div class="dialog">
+        <p>Chào con, ta có thể được biết tên của con không?</p>
+        <i class="fa-solid fa-angles-right icon"></i>
+      </div>
+    </div>
+
+    <div class="area-3"></div>
+  </body>
+</html>
