@@ -41,3 +41,16 @@ function removeAndDisplay(name) {
         break;
     }
 }
+
+window.onload = setInterval(playMusic, 1000 / 10); //10fps
+
+let myAudio = new Audio();
+
+myAudio.src = 'assets/sounds/background-sound.mp3';
+
+function playMusic() {
+    myAudio.play();
+    if (myAudio.paused == true) {
+        myAudio.play();
+    }
+}
