@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-image: url(../images/christmas-wallpaper.jpg);
   width: 100vw;
@@ -6,6 +10,7 @@ body {
   background-repeat: no-repeat;
   z-index: 1;
   position: relative;
+  font-family: "Cabin", sans-serif;
 }
 
 .area-1 {
@@ -114,41 +119,65 @@ body {
 }
 
 .area-2 {
-  box-sizing: border-box;
   position: absolute;
-  height: 10%;
-  width: inherit;
+  width: 100%;
+  height: 7rem;
   bottom: 0;
   left: 0;
-  z-index: 4;
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem;
 }
 
 .santa {
   background-image: url(../images/santa.png);
-  position: fixed;
+  position: absolute;
   width: 10rem;
   height: 10rem;
-  bottom: 0;
-  left: -2rem;
+  bottom: -1rem;
+  left: -4rem;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 2;
+  rotate: 30deg;
 }
 
 .dialog {
-  box-sizing: border-box;
-  background-color: white;
-  height: 100%;
-  text-align: justify;
-  border: 0.2rem solid green;
-  padding: 0.5rem 0.5rem 0.5rem 6.5rem;
+  display: flex;
   position: relative;
+  height: 100%;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  border: 0.2rem solid green;
+  padding: 0.5rem 0.5rem 0.5rem 5.5rem;
+}
+
+.dialog p {
+  text-align: justify;
 }
 
 .area-2 .next-icon {
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;
+}
+
+.area-3 {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../images/khung-nen-nho.png),
+    url(../images/letter-background.png);
+  background-position: top center, 50% 50%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  padding: 8rem 2rem;
+  font-family: "Dancing Script", cursive;
+}
+
+.area-3 p {
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  text-align: justify;
+  font-size: 12px;
+  text-indent: 1rem;
 }

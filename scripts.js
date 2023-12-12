@@ -5,6 +5,7 @@ const itemView = document.querySelector(".overlay");
 const item = document.querySelector(".overlay .item");
 const clsBtn = document.querySelector(".close-icon");
 const itemName = document.querySelector("span");
+const letter = document.querySelector(".area-3");
 
 let bgdSound = new Audio();
 let rwdSound = new Audio();
@@ -39,7 +40,7 @@ function display(name,event) {
         case "coin":
         event.style.backgroundImage = "url('assets/images/blue-3.png')";
         item.src = "assets/images/coin.png";
-        itemName.textContent = "10.000đ từ ví Momo";
+        itemName.textContent = "10.000đ vào ví Momo";
         break;
     }
     itemView.style.display = "block";
