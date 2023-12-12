@@ -30,11 +30,10 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 3;
   cursor: pointer;
 }
 
-.area-1 .icon {
+.close-icon {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -58,30 +57,60 @@ body {
   transition: all ease 500ms;
 }
 
-.box-1 {
+.candy {
   background-image: url(../images/red-1.png);
   left: 0.1rem;
 }
 
-.box-2 {
+.reindeer {
   background-image: url(../images/green-1.png);
   left: 50%;
   translate: -50% -5%;
 }
 
-.box-3 {
+.coin {
   background-image: url(../images/blue-1.png);
   right: 0.1rem;
   translate: 0 5%;
 }
 
-img {
+.present img {
+  display: none;
+}
+
+.present img.opened {
+  display: block;
+}
+
+.overlay .item {
   max-width: 50%;
   height: auto;
   position: absolute;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.overlay p {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.overlay span {
+  width: 100%;
+  color: yellowgreen;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 3rem;
 }
 
 .area-2 {
@@ -95,7 +124,7 @@ img {
   padding: 0.5rem;
 }
 
-.area-2 .santa {
+.santa {
   background-image: url(../images/santa.png);
   position: fixed;
   width: 10rem;
@@ -108,7 +137,7 @@ img {
   z-index: 2;
 }
 
-.area-2 .dialog {
+.dialog {
   box-sizing: border-box;
   background-color: white;
   height: 100%;
@@ -118,7 +147,7 @@ img {
   position: relative;
 }
 
-.area-2 .icon {
+.area-2 .next-icon {
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;

@@ -1,56 +1,57 @@
-const box1 = document.querySelector(".present.box-1");
-const box2 = document.querySelector(".present.box-2");
-const box3 = document.querySelector(".present.box-3");
+const candy = document.querySelector(".candy");
+const reindeer = document.querySelector(".reindeer");
+const coin = document.querySelector(".coin");
+const itemView = document.querySelector(".overlay");
+const item = document.querySelector(".overlay .item");
+const clsBtn = document.querySelector(".close-icon");
+const itemName = document.querySelector("span");
 
-const container = document.querySelector(".area-1");
-const itemView1 = document.querySelector("#item-1");
-const itemView2 = document.querySelector("#item-2");
-const itemView3 = document.querySelector("#item-3");
+let bgdSound = new Audio();
+let rwdSound = new Audio();
+let ultSound = new Audio();
 
-function checkDisplay(name) {
-    switch (name) {
-        case "box-1":
-        itemView1.style.display = "block";
-        box1.style.backgroundImage = "url('assets/images/red-3.png')";
-        break;
-    
-        case "box-2":
-        itemView2.style.display = "block";
-        box2.style.backgroundImage = "url('assets/images/green-3.png')";
-        break;
-    
-        case "box-3":
-        itemView3.style.display = "block";
-        box3.style.backgroundImage = "url('assets/images/blue-3.png')";
-        break;
-    }
-}
-
-function removeAndDisplay(name) {
-    switch (name) {
-        case "item-1":
-        container.removeChild(itemView1);
-        break;
-    
-        case "item-2":
-        container.removeChild(itemView2);
-        break;
-    
-        case "item-3":
-        container.removeChild(itemView3);
-        break;
-    }
-}
+bgdSound.src = 'assets/sounds/background-sound.mp3';
+rwdSound.src = 'assets/sounds/christmas-reveal-tones.wav'
+ultSound.src = 'assets/sounds/complete-reward.wav';
 
 window.onload = setInterval(playMusic, 1000 / 10); //10fps
 
-let myAudio = new Audio();
+candy.addEventListener("click", (e) => {display("candy",e.target)});
+reindeer.addEventListener("click", (e) => {display("reindeer",e.target)});
+coin.addEventListener("click", (e) => {display("coin",e.target)});
+clsBtn.addEventListener("click", hide);
 
-myAudio.src = 'assets/sounds/background-sound.mp3';
+function display(name,event) {
+    rwdSound.play();
+    switch (name) {
+        case "candy":
+        event.style.backgroundImage = "url('assets/images/red-3.png')";
+        item.src = "assets/images/candy.png";
+        itemName.textContent = "Kẹo Giáng Sinh";
+        break;
+    
+        case "reindeer":
+        event.style.backgroundImage = "url('assets/images/green-3.png')";
+        item.src = "assets/images/reindeer.png";
+        itemName.textContent = "Thú bông tuần lộc";
+        break;
+    
+        case "coin":
+        event.style.backgroundImage = "url('assets/images/blue-3.png')";
+        item.src = "assets/images/coin.png";
+        itemName.textContent = "10.000đ từ ví Momo";
+        break;
+    }
+    itemView.style.display = "block";
+}
+
+function hide() {
+    itemView.style.display = "none";
+}
 
 function playMusic() {
-    myAudio.play();
-    if (myAudio.paused == true) {
-        myAudio.play();
+    bgdSound.play();
+    if (bgdSound.paused == true) {
+        bgdSound.play();
     }
 }

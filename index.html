@@ -16,47 +16,36 @@
     ></script>
   </head>
   <body>
+    <div class="santa"></div>
+
     <div class="area-1">
-      <div class="present box-1" onclick="checkDisplay('box-1')">
-        <a href="#"></a>
-      </div>
-
-      <div class="present box-2" onclick="checkDisplay('box-2')"></div>
-
-      <div class="present box-3" onclick="checkDisplay('box-3')"></div>
-
-      <div class="overlay item" id="item-1">
-        <i
-          class="fa-solid fa-xmark icon"
-          onclick="removeAndDisplay('item-1')"
-        ></i>
-
+      <div class="present candy">
         <img src="assets/images/candy.png" alt="" srcset="" />
       </div>
 
-      <div class="overlay item" id="item-2">
-        <i
-          class="fa-solid fa-xmark icon"
-          onclick="removeAndDisplay('item-2')"
-        ></i>
-
+      <div class="present reindeer">
         <img src="assets/images/reindeer.png" alt="" srcset="" />
       </div>
-      <div class="overlay item" id="item-3">
-        <i
-          class="fa-solid fa-xmark icon"
-          onclick="removeAndDisplay('item-3')"
-        ></i>
 
+      <div class="present coin">
         <img src="assets/images/coin.png" alt="" srcset="" />
+      </div>
+
+      <div class="overlay">
+        <i class="fa-solid fa-xmark close-icon"></i>
+        <img class="item" src="" alt="" srcset="" />
+        <p>
+          Chúc mừng! <br />
+          Bạn đã nhận được:
+        </p>
+        <span></span>
       </div>
     </div>
 
     <div class="area-2">
-      <div class="santa"></div>
       <div class="dialog">
         <p>Chào con, ta có thể được biết tên của con không?</p>
-        <i class="fa-solid fa-angles-right icon"></i>
+        <i class="fa-solid fa-angles-right next-icon"></i>
       </div>
     </div>
 
