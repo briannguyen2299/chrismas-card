@@ -8,9 +8,44 @@ body {
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 1;
   position: relative;
   font-family: "Cabin", sans-serif;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes zoom-shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .area-1 {
@@ -22,7 +57,6 @@ body {
   background-position: center top 25%;
   background-repeat: no-repeat;
   position: relative;
-  z-index: 2;
 }
 
 .overlay {
@@ -55,11 +89,20 @@ body {
   background-repeat: no-repeat;
   cursor: pointer;
   bottom: 15%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.present img {
+  max-width: 80%;
+  height: auto;
 }
 
 .present:hover {
-  transform: scale(1.2);
-  transition: all ease 500ms;
+  scale: 1.2;
+  /* transition: all ease 100ms; */
+  animation: 0.4s linear zoom-shake;
 }
 
 .candy {
@@ -77,14 +120,6 @@ body {
   background-image: url(../images/blue-1.png);
   right: 0.1rem;
   translate: 0 5%;
-}
-
-.present img {
-  display: none;
-}
-
-.present img.opened {
-  display: block;
 }
 
 .overlay .item {
@@ -128,17 +163,18 @@ body {
 }
 
 .santa {
-  background-image: url(../images/santa.png);
   position: absolute;
   width: 10rem;
   height: 10rem;
-  bottom: -1rem;
+  bottom: 0;
   left: -4rem;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 2;
-  rotate: 30deg;
+  overflow: hidden;
+}
+
+.santa img {
+  transform: rotate(30deg);
+  max-width: 90%;
+  height: auto;
 }
 
 .dialog {
@@ -149,7 +185,7 @@ body {
   justify-content: center;
   align-items: center;
   border: 0.2rem solid green;
-  padding: 0.5rem 0.5rem 0.5rem 5.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 6rem;
 }
 
 .dialog p {
@@ -172,6 +208,7 @@ body {
   background-size: cover, cover;
   padding: 8rem 2rem;
   font-family: "Dancing Script", cursive;
+  display: none;
 }
 
 .area-3 p {
@@ -180,4 +217,14 @@ body {
   text-align: justify;
   font-size: 12px;
   text-indent: 1rem;
+}
+
+.star {
+  position: absolute;
+  top: 65px;
+  left: 156px;
+}
+
+.shaking {
+  animation: 1s linear infinite shake;
 }
