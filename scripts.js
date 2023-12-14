@@ -5,6 +5,8 @@ const itemView = document.querySelector(".overlay");
 const item = document.querySelector(".overlay .item");
 const clsBtn = document.querySelector(".close-icon");
 const itemName = document.querySelector("span");
+const dialog = document.querySelector(".area-2");
+const santa = document.querySelector(".santa");
 const letter = document.querySelector(".area-3");
 const star = document.querySelector(".star");
 const once = {once: true};
@@ -25,8 +27,10 @@ clsBtn.addEventListener("click", () => {
     count++;
 });
 star.addEventListener("click", special, once);
-
-window.onload = applyShake();
+window.addEventListener("load", () => {
+    applyShake();
+    setTimeout(showElement, 1000);
+})
 
 function display(name, event) {
     rwdSound.play();
@@ -87,4 +91,15 @@ function special() {
 
 function applyShake() {
     star.classList.add('shaking');
+}
+
+function showElement() {
+    dialog.classList.remove('hidden');
+    dialog.classList.add('visible');
+    santa.classList.add('appear');
+}
+  
+function hideElement() {
+    dialog.classList.remove('visible');
+    dialog.classList.add('hidden');
 }

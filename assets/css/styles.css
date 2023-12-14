@@ -57,6 +57,7 @@ body {
   background-position: center top 25%;
   background-repeat: no-repeat;
   position: relative;
+  overflow-x: hidden;
 }
 
 .overlay {
@@ -160,6 +161,8 @@ body {
   bottom: 0;
   left: 0;
   padding: 0 0.5rem 0.5rem;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .santa {
@@ -169,6 +172,7 @@ body {
   bottom: 0;
   left: -4rem;
   overflow: hidden;
+  transform: translateX(-50%);
 }
 
 .santa img {
@@ -225,6 +229,25 @@ body {
   left: 156px;
 }
 
+/* JavaScript Trigger */
+
 .shaking {
   animation: 1s linear infinite shake;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-in-out;
+}
+
+.appear {
+  transform: translateX(0);
+  transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
