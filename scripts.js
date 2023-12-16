@@ -6,7 +6,7 @@ const item = document.querySelector(".overlay .item");
 const clsBtn = document.querySelector(".close-icon");
 const itemName = document.querySelector("span");
 const dialog = document.querySelector(".area-2");
-const santa = document.querySelector(".santa");
+const santa = document.querySelector(".santa img");
 const letter = document.querySelector(".area-3");
 const star = document.querySelector(".star");
 const once = {once: true};
@@ -17,8 +17,12 @@ const bgdSound = new Audio('assets/sounds/background-sound.mp3');
 const rwdSound = new Audio('assets/sounds/christmas-reveal-tones.wav');
 const ultSound = new Audio('assets/sounds/complete-reward.wav');
 
-bgdSound.addEventListener("canplaythrough", (event) => {bgdSound.play();});
-bgdSound.addEventListener('ended', function() {bgdSound.play();});
+bgdSound.addEventListener("canplaythrough", () => {
+    setTimeout(() => {
+        bgdSound.play();
+    }, 3000);
+});
+bgdSound.addEventListener('ended', () => {bgdSound.play();});
 candy.addEventListener("click", e => display("candy", e.target), once);
 reindeer.addEventListener("click", e => display("reindeer", e.target), once);
 coin.addEventListener("click", e => display("coin", e.target), once);
@@ -30,7 +34,7 @@ star.addEventListener("click", special, once);
 window.addEventListener("load", () => {
     applyShake();
     setTimeout(showElement, 1000);
-})
+});
 
 function display(name, event) {
     rwdSound.play();
@@ -93,13 +97,30 @@ function applyShake() {
     star.classList.add('shaking');
 }
 
+const santaSpinning = [
+    { transform: "translate(0) rotate(0)", opacity: 0 },
+    { transform: "translate(70%) rotate(25deg)", opacity: 1}
+];
+const dialogAppear = [
+    { transform: "translate(-110%)" },
+    { transform: "translate(0)" }
+];
+const santaTiming = {
+    duration: 3000,
+    iterations: 1,
+    easing: "cubic-bezier(0.05, 0.5, 0.5, 1.575)",
+    fill: "forwards",
+};
+
 function showElement() {
-    dialog.classList.remove('hidden');
-    dialog.classList.add('visible');
-    santa.classList.add('appear');
-}
-  
-function hideElement() {
-    dialog.classList.remove('visible');
-    dialog.classList.add('hidden');
+    dialog.style.display = "block";
+    dialog.animate(dialogAppear, { 
+        duration: 500,
+        iterations: 1,
+        easing: "ease-out",
+        fill: "forwards"
+    });
+    setTimeout(() => {
+        santa.animate(santaSpinning, santaTiming);
+    }, 2000);
 }
