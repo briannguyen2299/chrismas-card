@@ -12,42 +12,6 @@ body {
   font-family: "Cabin", sans-serif;
 }
 
-@keyframes shake {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(10deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes zoom-shake {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(10deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .area-1 {
   width: inherit;
   height: 100vh;
@@ -79,12 +43,6 @@ body {
   height: auto;
 }
 
-.present:hover {
-  scale: 1.2;
-  /* transition: all ease 100ms; */
-  animation: 0.4s linear zoom-shake;
-}
-
 .candy {
   background-image: url(../images/red-1.png);
   left: 0.1rem;
@@ -112,7 +70,7 @@ body {
   display: none;
 }
 
-.dialog {
+.dialogue {
   display: flex;
   position: relative;
   height: 100%;
@@ -138,7 +96,7 @@ body {
   translate: -100%;
 }
 
-.dialog p {
+.dialogue p {
   text-align: justify;
 }
 
@@ -226,10 +184,4 @@ body {
   position: absolute;
   top: 65px;
   left: 156px;
-}
-
-/* JavaScript Trigger */
-
-.shaking {
-  animation: 1s linear infinite shake;
 }
