@@ -12,6 +12,8 @@ const clsBtn = $(".close-icon");
 const itemName = $("span");
 const dialogue = $(".area-2");
 const santa = $(".santa img");
+const para = $(".dialogue p");
+const nxtBtn = $(".next-icon");
 const letter = $(".area-3");
 const star = $(".star");
 
@@ -31,7 +33,7 @@ let playAttempt = setInterval(() => {
       .catch((error) => {
         console.log("Unable to play the video, User has not interacted yet.");
       });
-}, 3000);
+}, 2000);
 
 // 4. Biến dùng cho animation
 const effect = {
@@ -63,13 +65,24 @@ const effect = {
             "rotate(0deg)"
         ],
     },
+
+    nextIconEffect: {
+        transform: [
+            "translateY(0)",
+            "translateY(-0.2rem)",
+            "translateY(0)",
+            "translateY(0.2rem)",
+            "translateY(0)"
+        ],
+    },
 };
 
 const timing = {
     santaTiming: {
-        duration: 3000,
+        duration: 2000,
         iterations: 1,
         easing: "cubic-bezier(0.05, 0.5, 0.5, 1.575)",
+        delay: 1000,
         fill: "forwards",
     },
 
@@ -90,34 +103,31 @@ const timing = {
     presentTiming: {
         duration: 500,
         iterations: 1,
-        easing: "linear",
+        easing: "ease-out",
         fill: "forwards"
     },
+
+    nextIconTiming: {
+        duration: 2000,
+        iterations: "Infinity",
+        easing: "linear",
+        fill: "none"
+    }
 };
 
-// 5. Các biến khác
-let count = 1;
+let namePerson;
 
 // II. XỬ LÝ SỰ KIỆN
 
-// 1. Hiệu ứng âm thanh
+// 1. Âm thanh
 bgdSound.onended = () => bgdSound.play();
 rwdSound.onended = () => bgdSound.volume = 1;
 ultSound.onended = () => bgdSound.volume = 1;
 
-// 2. Click vào hộp quà
-candy.addEventListener("click", e => display("candy", e.target), once);
-reindeer.addEventListener("click", e => display("reindeer", e.target), once);
-coin.addEventListener("click", e => display("coin", e.target), once);
+// 2. Ngôi sao
 star.addEventListener("click", special, once);
 
-// 3. Đóng giao diện hộp quà
-clsBtn.addEventListener("click", () => {
-    hide();
-    count++;
-});
-
-// 4. Hiệu ứng khi hover vào hộp quà
+// 3. Hộp quà
 presents.forEach(present => {
     present.addEventListener("mouseenter", (e) => {
         e.target.animate(effect.presentHover, timing.presentTiming);
@@ -128,16 +138,36 @@ presents.forEach(present => {
         e.target.animate(
             {scale: [1.2,1]}, 
             {
-            duration: 100,
+            duration: 50,
             iterations: 1,
-            easing: "linear",
+            easing: "ease-out",
             fill: "forwards"
             }
         );
     });
+
+    present.addEventListener("click", (e) => display(e.target.classList.item(1), e.target), once);
 });
 
-// 5. Code chạy sau khi trang tải xong
+nxtBtn.addEventListener("click", () => {
+    para.textContent = "Nhập tên của bạn dưới đây:";
+    const input = document.createElement("input");
+    const btn = document.createElement("button");
+    btn.textContent = "Xác nhận";
+    input.setAttribute("type","text");
+    para.appendChild(input);
+    para.appendChild(btn);
+
+    btn.addEventListener("click", () => {
+        namePerson = input.value;
+        para.removeChild(input);
+        para.removeChild(btn);
+        para.textContent = `${namePerson} thân mến, chúc mừng giáng sinh.`;
+        nxtBtn.style.display = "none";
+    }, once);
+}, once);
+
+// 4. Khi website tải xong
 window.addEventListener("load", () => {
     star.animate(effect.starShaking, timing.starTiming);
     setTimeout(showElement, 1000);
@@ -145,7 +175,7 @@ window.addEventListener("load", () => {
 
 // III. ĐỊNH NGHĨA HÀM
 
-// 1. Hiện giao diện hộp quà
+// 1. Tạo giao diện hộp quà
 function display(name, event) {
     bgdSound.volume = 0.25;
     rwdSound.play();
@@ -156,7 +186,6 @@ function display(name, event) {
         item.src = "assets/images/candy.png";
         itemName.textContent = "Kẹo Giáng Sinh";
         itemImg.setAttribute("src", "assets/images/candy.png");
-        candy.appendChild(itemImg);
         break;
     
         case "reindeer":
@@ -164,8 +193,6 @@ function display(name, event) {
         item.src = "assets/images/reindeer.png";
         itemName.textContent = "Thú bông tuần lộc";
         itemImg.setAttribute("src", "assets/images/reindeer.png");
-        reindeer.appendChild(itemImg);
-
         break;
     
         case "coin":
@@ -173,44 +200,52 @@ function display(name, event) {
         item.src = "assets/images/coin.png";
         itemName.textContent = "10.000đ vào ví Momo";
         itemImg.setAttribute("src", "assets/images/coin.png");
-        coin.appendChild(itemImg);
         break;
     }
+    event.appendChild(itemImg);
     itemView.style.display = "block";
-    itemImg.style.display = "none";
+
+    const theEvent = event;
+    clsBtn.addEventListener("click", () => {
+        itemView.style.display = "none";
+        itemImg.style.display = "block";
+        switch (name) {
+            case "candy":
+            theEvent.style.backgroundImage = "url('assets/images/red-4.png')";
+            break;
+            case "reindeer":
+            theEvent.style.backgroundImage = "url('assets/images/green-4.png')";
+            break;
+            case "coin":
+            theEvent.style.backgroundImage = "url('assets/images/blue-4.png')";
+            break;
+        }
+    }, once);
 }
 
-// 1. Đóng giao diện hộp quà
-function hide() {
-    itemView.style.display = "none";
-    let itemImg;
-    switch (count) {
-        case 1:
-            itemImg = document.querySelector(".candy img");
-            candy.style.backgroundImage = "url('assets/images/red-4.png')";
-            break;
-        case 2:
-            itemImg = document.querySelector(".reindeer img");
-            reindeer.style.backgroundImage = "url('assets/images/green-4.png')";
-            break;
-        case 3:
-            itemImg = document.querySelector(".coin img");
-            coin.style.backgroundImage = "url('assets/images/blue-4.png')";
-            break;
-    }
-    itemImg.style.display = "block";
-}
 // 
 function special() {
     bgdSound.volume = 0.25;
     ultSound.play();
 }
 
-// Hiệu ứng xuất hiện
+// Giao diện dialog box
 function showElement() {
-    dialogue.style.display = "block";
-    dialogue.animate(effect.dialogueAppear, timing.dialogueTiming);
-    setTimeout(() => {
-        santa.animate(effect.santaSpinning, timing.santaTiming);
-    }, 2000);
+    dialogue.style.visibility = "visible";
+    dialogue.animate(effect.dialogueAppear, timing.dialogueTiming).finished
+    .then(() => santa.animate(effect.santaSpinning, timing.santaTiming))
+    .then(() => {
+        setTimeout(() => {
+            para.classList.replace('hidden', 'visible');
+        }, 2000);
+    })
+    .then(() => {
+        setTimeout(() => {
+            nxtBtn.classList.replace('hidden', 'visible');
+            setTimeout(() => {
+                nxtBtn.animate(effect.nextIconEffect, timing.nextIconTiming);
+            }, 5000);
+        }, 5000);
+    })
+    .catch(error => console.error(`Error animating: ${error}`));
 }

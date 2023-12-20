@@ -34,13 +34,14 @@ body {
   cursor: pointer;
   bottom: 15%;
   display: flex;
-  align-items: flex-start;
-  justify-content: left;
+  align-items: center;
+  justify-content: center;
 }
 
 .present img {
   max-width: 80%;
   height: auto;
+  display: none;
 }
 
 .candy {
@@ -66,8 +67,8 @@ body {
   height: 7rem;
   bottom: 0;
   left: 0;
-  padding: 0 0.5rem 0.5rem;
-  display: none;
+  padding: 0 0.2rem 0.5rem;
+  visibility: hidden;
 }
 
 .dialogue {
@@ -86,7 +87,7 @@ body {
   width: 10rem;
   height: 10rem;
   bottom: 0;
-  left: -11px;
+  left: -0.4rem;
   overflow: hidden;
 }
 
@@ -97,10 +98,18 @@ body {
 }
 
 .dialogue p {
-  text-align: justify;
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 0.5rem;
 }
 
-.area-2 .next-icon {
+.dialogue input {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.next-icon {
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;
@@ -159,6 +168,12 @@ body {
   font-size: 3rem;
 }
 
+.close-icon:hover {
+  scale: 1.5;
+  color: yellowgreen;
+  transition: scale 0.1s ease-out;
+}
+
 .area-3 {
   width: 100vw;
   height: 100vh;
@@ -183,5 +198,18 @@ body {
 .star {
   position: absolute;
   top: 65px;
-  left: 156px;
+  left: 50%;
+  translate: -50%;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 5s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 5s ease-in-out;
 }
