@@ -7,9 +7,11 @@ const reindeer = $(".reindeer");
 const coin = $(".coin");
 const presents = document.querySelectorAll(".present");
 const itemView = $(".overlay");
+const nxtStep = $(".next-step");
 const item = $(".overlay .item");
 const clsBtn = $(".close-icon");
-const itemName = $("span");
+const itemName = $(".item-name");
+const speech = $(".speech");
 const dialogue = $(".area-2");
 const santa = $(".santa img");
 const para = $(".dialogue p");
@@ -31,7 +33,7 @@ let playAttempt = setInterval(() => {
         clearInterval(playAttempt);
       })
       .catch((error) => {
-        console.log("Unable to play the video, User has not interacted yet.");
+        console.log("Unable to play the audio, User has not interacted yet.");
       });
 }, 2000);
 
@@ -48,11 +50,11 @@ const effect = {
     ],
 
     starShaking: [
-        {transform: "rotate(0deg)"},
-        {transform: "rotate(-10deg)"},
-        {transform: "rotate(0deg)"},
-        {transform: "rotate(10deg)"},
-        {transform: "rotate(0deg)"},
+        {transform: "scale(1) rotate(0deg)"},
+        {transform: "scale(1.2) rotate(90deg)"},
+        {transform: "scale(1) rotate(180deg)"},
+        {transform: "scale(0.8) rotate(270deg)"},
+        {transform: "scale(1) rotate(360deg)"},
     ],
 
     presentHover: {
@@ -94,7 +96,7 @@ const timing = {
     },
 
     starTiming: {
-        duration: 1000,
+        duration: 5000,
         iterations: "Infinity",
         easing: "linear",
         fill: "none"
@@ -111,11 +113,12 @@ const timing = {
         duration: 2000,
         iterations: "Infinity",
         easing: "linear",
+        delay: 2000,
         fill: "none"
     }
 };
 
-let namePerson;
+let count = 0;
 
 // II. XỬ LÝ SỰ KIỆN
 
@@ -149,23 +152,41 @@ presents.forEach(present => {
     present.addEventListener("click", (e) => display(e.target.classList.item(1), e.target), once);
 });
 
-nxtBtn.addEventListener("click", () => {
+dialogue.addEventListener("click", () => {
+    para.classList.replace('visible', 'hidden');
     para.textContent = "Nhập tên của bạn dưới đây:";
     const input = document.createElement("input");
     const btn = document.createElement("button");
     btn.textContent = "Xác nhận";
     input.setAttribute("type","text");
+    input.classList.add('hidden');
+    btn.classList.add('hidden');
     para.appendChild(input);
     para.appendChild(btn);
+    setTimeout(() => {
+        para.classList.replace('hidden', 'visible');
+        input.classList.replace('hidden', 'visible');
+        btn.classList.replace('hidden', 'visible');
+    }, 1000);
+    nxtBtn.style.display = "none";
 
     btn.addEventListener("click", () => {
-        namePerson = input.value;
+        const namePerson = input.value;
         para.removeChild(input);
         para.removeChild(btn);
-        para.textContent = `${namePerson} thân mến, chúc mừng giáng sinh.`;
-        nxtBtn.style.display = "none";
+        para.classList.replace('visible', 'hidden');
+        if (namePerson === "") {
+            para.textContent = "Giáng Sinh vui vẻ.";
+        } else {
+            para.textContent = `${namePerson} thân mến, Giáng Sinh vui vẻ.`;
+        }
+        setTimeout(() => {
+            para.classList.replace('hidden', 'visible');
+        }, 1000);
     }, once);
 }, once);
+
+nxtStep.addEventListener("click", () => letter.scrollIntoView({ behavior: 'smooth' }));
 
 // 4. Khi website tải xong
 window.addEventListener("load", () => {
@@ -204,11 +225,13 @@ function display(name, event) {
     }
     event.appendChild(itemImg);
     itemView.style.display = "block";
+    itemView.classList.replace('hidden', 'visible');
 
     const theEvent = event;
     clsBtn.addEventListener("click", () => {
-        itemView.style.display = "none";
+        itemView.classList.replace('visible', 'hidden');
         itemImg.style.display = "block";
+        setTimeout(() => itemView.style.display = "none", 1000);
         switch (name) {
             case "candy":
             theEvent.style.backgroundImage = "url('assets/images/red-4.png')";
@@ -220,6 +243,15 @@ function display(name, event) {
             theEvent.style.backgroundImage = "url('assets/images/blue-4.png')";
             break;
         }
+        count++;
+
+        if (count > 2) {
+            speech.style.display = "block";
+            setTimeout(() => {
+            speech.classList.replace('hidden', 'visible');
+            speech.animate(effect.nextIconEffect, timing.nextIconTiming);
+            }, 1000);
+        }
     }, once);
 }
 
@@ -227,6 +259,13 @@ function display(name, event) {
 function special() {
     bgdSound.volume = 0.25;
     ultSound.play();
+    nxtStep.style.display = "block";
+    setTimeout(() => {
+        nxtStep.classList.replace('hidden', 'visible');
+        nxtStep.animate(effect.nextIconEffect, timing.nextIconTiming);
+        letter.style.display = "block";
+        letter.scrollIntoView({ behavior: 'smooth' });
+    }, 1000);
 }
 
 // Giao diện dialog box
@@ -237,14 +276,12 @@ function showElement() {
     .then(() => {
         setTimeout(() => {
             para.classList.replace('hidden', 'visible');
-        }, 2000);
+        }, 3000);
     })
     .then(() => {
         setTimeout(() => {
             nxtBtn.classList.replace('hidden', 'visible');
-            setTimeout(() => {
-                nxtBtn.animate(effect.nextIconEffect, timing.nextIconTiming);
-            }, 5000);
+            nxtBtn.animate(effect.nextIconEffect, timing.nextIconTiming);
         }, 5000);
     })
     .catch(error => console.error(`Error animating: ${error}`));

@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Christmas present</title>
     <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/images/favicon_io/site.webmanifest" />
+    <link
       rel="stylesheet"
       href="https://meyerweb.com/eric/tools/css/reset/reset.css"
     />
@@ -28,12 +46,14 @@
       <div class="present reindeer"></div>
       <div class="present coin"></div>
 
-      <div class="overlay">
+      <div class="overlay hidden">
         <i class="fa-solid fa-xmark close-icon"></i>
         <img class="item" src="" alt="" srcset="" />
         <p>Tặng em</p>
-        <span></span>
+        <span class="item-name"></span>
       </div>
+
+      <span class="next-step hidden">▼</span>
     </div>
 
     <div class="area-2">
@@ -41,8 +61,15 @@
         <div class="santa">
           <img src="assets/images/santa.png" alt="" />
         </div>
+
+        <div class="speech hidden">
+          <span
+            >Nhấn vào ngôi sao để nhận một món quà siêu cấp đặc biệt nha!</span
+          >
+        </div>
+
         <p class="hidden">
-          Chào con, con có thể cho ta biết tên của con được không?
+          Chào con, con có thể cho ta biết tên con được không?
         </p>
         <i class="fa-solid fa-angles-right next-icon hidden"></i>
       </div>

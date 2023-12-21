@@ -61,6 +61,18 @@ body {
   translate: 0 5%;
 }
 
+.next-step {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  translate: -50%;
+  display: none;
+  color: green;
+  z-index: 1;
+  cursor: pointer;
+}
+
 .area-2 {
   position: absolute;
   width: 100%;
@@ -97,16 +109,52 @@ body {
   translate: -100%;
 }
 
+.speech {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 80%;
+  position: absolute;
+  border: 2px solid yellow;
+  border-radius: 15px;
+  padding: 0.5rem;
+  top: -4rem;
+  right: 0;
+  display: none;
+}
+
 .dialogue p {
+  width: 100%;
   text-align: center;
   display: flex;
   flex-flow: column wrap;
-  gap: 0.5rem;
+  row-gap: 0.5rem;
+  justify-content: center;
+  padding: 0 1rem;
 }
 
 .dialogue input {
-  display: block;
-  margin-top: 0.5rem;
+  font-family: "Cabin", sans-serif;
+  box-shadow: inset 1px 1px 3px #ccc;
+  border-radius: 5px;
+}
+
+.dialogue button {
+  width: 50%;
+  font-family: "Cabin", sans-serif;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  align-self: center;
+}
+
+.dialogue button:after {
+  content: " >>>";
+}
+
+button:hover,
+button:focus {
+  background: #000;
+  color: #fff;
 }
 
 .next-icon {
@@ -125,7 +173,6 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  cursor: pointer;
   z-index: 1;
 }
 
@@ -135,6 +182,7 @@ body {
   right: 1rem;
   font-size: 2rem;
   color: yellow;
+  cursor: pointer;
 }
 
 .overlay .item {
@@ -157,7 +205,7 @@ body {
   font-size: 2rem;
 }
 
-.overlay span {
+.overlay .item-name {
   width: 100%;
   color: yellowgreen;
   position: absolute;
@@ -182,7 +230,7 @@ body {
   background-position: top center, 50% 50%;
   background-repeat: no-repeat, no-repeat;
   background-size: cover, cover;
-  padding: 8rem 2rem;
+  padding: 9rem 2rem;
   font-family: "Dancing Script", cursive;
   display: none;
 }
@@ -191,25 +239,27 @@ body {
   line-height: 1.5;
   margin: 0.5rem 0;
   text-align: justify;
-  font-size: 12px;
+  font-size: 0.8rem;
   text-indent: 1rem;
 }
 
 .star {
   position: absolute;
-  top: 65px;
+  top: calc(50% - 37vh);
   left: 50%;
-  translate: -50%;
+  translate: -50% -50%;
+  width: 15%;
+  cursor: pointer;
 }
 
 .visible {
   opacity: 1;
   visibility: visible;
-  transition: opacity 5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 .hidden {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
