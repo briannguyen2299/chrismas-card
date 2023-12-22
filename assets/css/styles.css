@@ -233,6 +233,7 @@ button:focus {
   padding: 8rem 2rem 0;
   font-family: "Dancing Script", cursive;
   display: none;
+  position: relative;
 }
 
 .area-3 .wrapper {
@@ -248,6 +249,18 @@ button:focus {
   font-size: 1.5vh;
   text-indent: 1rem;
   color: rgb(7, 9, 151);
+}
+
+.previous-step {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  translate: -50%;
+  display: none;
+  color: red;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .star {

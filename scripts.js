@@ -8,6 +8,7 @@ const coin = $(".coin");
 const presents = document.querySelectorAll(".present");
 const itemView = $(".overlay");
 const nxtStep = $(".next-step");
+const pvsStep = $(".previous-step");
 const item = $(".overlay .item");
 const clsBtn = $(".close-icon");
 const itemName = $(".item-name");
@@ -244,7 +245,6 @@ function display(name, event) {
 
         if (count > 2) {
             star.addEventListener("click", special, once);
-            nxtStep.addEventListener("click", () => letter.scrollIntoView({ behavior: 'smooth' }));
             speech.style.display = "block";
             setTimeout(() => {
             speech.classList.replace('hidden', 'visible');
@@ -259,11 +259,16 @@ function special() {
     bgdSound.volume = 0.25;
     ultSound.play();
     nxtStep.style.display = "block";
+    pvsStep.style.display = "block";
     setTimeout(() => {
         nxtStep.classList.replace('hidden', 'visible');
+        nxtStep.addEventListener("click", () => letter.scrollIntoView({ behavior: 'smooth' }));
         nxtStep.animate(effect.nextIconEffect, timing.nextIconTiming);
         letter.style.display = "block";
         letter.scrollIntoView({ behavior: 'smooth' });
+        pvsStep.classList.replace('hidden', 'visible');
+        pvsStep.addEventListener("click", () => $(".area-1").scrollIntoView({ behavior: 'smooth' }));
+        pvsStep.animate(effect.nextIconEffect, timing.nextIconTiming);
     }, 1000);
 }
 
