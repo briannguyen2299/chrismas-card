@@ -127,9 +127,6 @@ bgdSound.onended = () => bgdSound.play();
 rwdSound.onended = () => bgdSound.volume = 1;
 ultSound.onended = () => bgdSound.volume = 1;
 
-// 2. Ngôi sao
-star.addEventListener("click", special, once);
-
 // 3. Hộp quà
 presents.forEach(present => {
     present.addEventListener("mouseenter", (e) => {
@@ -186,7 +183,7 @@ dialogue.addEventListener("click", () => {
     }, once);
 }, once);
 
-nxtStep.addEventListener("click", () => letter.scrollIntoView({ behavior: 'smooth' }));
+
 
 // 4. Khi website tải xong
 window.addEventListener("load", () => {
@@ -246,6 +243,8 @@ function display(name, event) {
         count++;
 
         if (count > 2) {
+            star.addEventListener("click", special, once);
+            nxtStep.addEventListener("click", () => letter.scrollIntoView({ behavior: 'smooth' }));
             speech.style.display = "block";
             setTimeout(() => {
             speech.classList.replace('hidden', 'visible');

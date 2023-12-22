@@ -230,17 +230,24 @@ button:focus {
   background-position: top center, 50% 50%;
   background-repeat: no-repeat, no-repeat;
   background-size: cover, cover;
-  padding: 9rem 2rem;
+  padding: 8rem 2rem 0;
   font-family: "Dancing Script", cursive;
   display: none;
+}
+
+.area-3 .wrapper {
+  padding: 0.5rem;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .area-3 p {
   line-height: 1.5;
   margin: 0.5rem 0;
   text-align: justify;
-  font-size: 0.8rem;
+  font-size: 1.5vh;
   text-indent: 1rem;
+  color: rgb(7, 9, 151);
 }
 
 .star {
